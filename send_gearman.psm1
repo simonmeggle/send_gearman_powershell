@@ -1,8 +1,8 @@
 <#
 .Synopsis
-    Send a packet to a gearmand server.
+    Send a result packet to a OMD monitoring systemt with gearmand.
 .Description 
-    This powershell cmdlet allows to inject results to a monitoring system with GearmanD. (mod-gearman)
+    This powershell module allows to inject results to a monitoring system with GearmanD. (mod-gearman)
 	
 .Parameter $server
     IP address/hostname of the gearman server
@@ -24,15 +24,14 @@
     Debug (Default: no)
 
 .Link
-    FIXME
+    https://github.com/simonmeggle/send_gearman_powershell
 .Example
     Import-Module send_gearman
 	send_gearman -server $GearmanServer -key "wrzlbrmpft" -hostname "myhost" -servicename "mysvc" -output "OK: All tests passed." -statuscode 0
-		
 #>
 
 # C:\Users\simon_meggle\AppData\Local\Temp\2
-$logging = $true
+$logging = $false
 $logfile = "send_gearman.psm1.log"
 
 function send_gearman{

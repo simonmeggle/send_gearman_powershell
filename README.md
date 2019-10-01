@@ -1,40 +1,17 @@
-This powershell cmdlet continuously monitors a directory tree and write to the output the path of the file that has changed.
+This Powershell module allows to inject results from a windows machine to a monitoring system with GearmanD. (mod-gearman, see https://labs.consol.de/omd/)
 
-This allows you to create an script that for instance, run a suite of unit tests when an specific file has changed using powershell pipelining.
 
-Installation
-============
+# Installation
 
-Download the psm1 file in My documents\WindowsPowershell\Modules\pswatch or simply run this one line installation script:
+Download the psm1 file in `~\Documents\WindowsPowershell\Modules\send_gearman` or simply run this one line installation script:
 
-	iex ((new-object net.webclient).DownloadString("http://bit.ly/Install-PsWatch"))
+	iex ((new-object net.webclient).DownloadString("https://raw.githubusercontent.com/simonmeggle/send_gearman_powershell/master/install.ps1"))
 
-Usage
-=====
+This will also download and install the compiled go binary `send_gearman.windows.amd64.exe`. If you want to compile your own binary go to https://github.com/ConSol/mod-gearman-worker-go and use the Makefile there. 
 
-A simple example will be:
+# Usage
 
-	Import-Module pswatch
+    Import-Module send_gearman
+	send_gearman -server $GearmanServer -key "wrzlbrmpft" -hostname "myhost" -servicename "mysvc" -output "OK: All tests passed." -statuscode 0
 
-	watch "Myfolder\Other" | %{
-		Write-Host "$_.Path has changed!"
-		RunUnitTests.exe $_.Path
-	}
-
-You can filter by using powershell pipelining as follows:
-
-	watch | Get-Item | Where-Object { $_.Extension -eq ".js" } | %{
-		do the magic...
-	}
-
-Options
-=======
-
-The wacth cmdlet has the following parameters:
-
-  * location: the directory to watch. Optional, default to current directory.
-  * includeSubdirectories: default to true.
-  * includeChanged: default to true.
-  * includeRenamed: default to true.
-  * includeCreated: default to true.
-  * includeDeleted: default to false.
+See data.gearman for an example file for a packet with multiple results. 
