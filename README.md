@@ -3,7 +3,7 @@ This Powershell module allows to inject results from a windows machine to a moni
 
 # Installation
 
-Download the psm1 file in `~\Documents\WindowsPowershell\Modules\send_gearman` or simply run this one line installation script:
+Download the psm1 and .exe file into `~\Documents\WindowsPowershell\Modules\send_gearman` or simply run this one line installation script:
 
 	iex ((new-object net.webclient).DownloadString("https://raw.githubusercontent.com/simonmeggle/send_gearman_powershell/master/install.ps1"))
 
