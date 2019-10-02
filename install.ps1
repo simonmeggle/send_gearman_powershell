@@ -5,7 +5,7 @@ Write-Host "Creating module directory"
 New-Item -Type Container -Force -path $send_gearmanpath | out-null
 
 Write-Host "Downloading and installing"
-(new-object net.webclient).DownloadString("https://github.com/simonmeggle/send_gearman_powershell/blob/master/send_gearman.windows.amd64.exe?raw=true") | Out-File "$send_gearmanpath\send_gearman.windows.amd64.exe" 
+(new-object net.webclient).DownloadString("https://github.com/simonmeggle/send_gearman_powershell/raw/master/send_gearman.windows.amd64.exe") | Out-File "$send_gearmanpath\send_gearman.windows.amd64.exe" 
 (new-object net.webclient).DownloadString("https://raw.githubusercontent.com/simonmeggle/send_gearman_powershell/master/send_gearman.psm1") | Out-File "$send_gearmanpath\send_gearman.psm1" 
 
 Write-Host "Installed!"
